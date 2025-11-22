@@ -59,12 +59,14 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     //Firebase
+
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.firestore.ktx)
 
     //Coil for image loading
     implementation(libs.coil.compose)
+
 
     //ViewModel Compose
     implementation(libs.androidx.lifecycle.viewmodel.compose)
