@@ -57,14 +57,18 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    //Firebase
-    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-firestore-ktx")
-    implementation("com.google.firebase:firebase-ktx")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2")
 
-    // Navigation Compose
-    implementation("androidx.navigation:navigation-compose:2.5.3")
+    //Firebase
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.firestore.ktx)
+
+    //Coil for image loading
+    implementation(libs.coil.compose)
+
+
+    //ViewModel Compose
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
 }

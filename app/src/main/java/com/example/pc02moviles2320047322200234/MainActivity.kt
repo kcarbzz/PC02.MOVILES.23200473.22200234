@@ -6,13 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.pc02moviles2320047322200234.ui.HomeScreen
-import com.example.pc02moviles2320047322200234.ui.RegistroEquipoScreen
-import com.example.pc02moviles2320047322200234.presentation.viewmodel.EquipoViewModel
+import com.example.pc02moviles2320047322200234.presentation.home.ListadoScreen
+
 import com.example.pc02moviles2320047322200234.ui.theme.PC02MOVILES2320047322200234Theme
 
 class MainActivity : ComponentActivity() {
@@ -20,15 +17,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             PC02MOVILES2320047322200234Theme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    val currentScreen = remember { mutableStateOf("home") }
-                    val equipoViewModel: EquipoViewModel = viewModel()
 
-                    when (currentScreen.value) {
-                        "home" -> HomeScreen(onNavigateToRegistro = { currentScreen.value = "registro_equipo" })
-                        "registro_equipo" -> RegistroEquipoScreen(equipoViewModel = equipoViewModel)
-                    }
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    ListadoScreen()
+
                 }
             }
         }
