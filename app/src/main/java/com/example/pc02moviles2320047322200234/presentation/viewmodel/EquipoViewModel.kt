@@ -14,7 +14,16 @@ class EquipoViewModel : ViewModel() {
     var titulosGanados by mutableStateOf("")
     var imagenUrl by mutableStateOf("")
 
+    // Estado para comunicar resultado (éxito/error) a la UI
+    var statusMessage by mutableStateOf("")
+
     fun addEquipo() {
+        // Validación mínima
+        if (nombre.isBlank()) {
+            statusMessage = "El nombre del equipo es obligatorio"
+            return
+        }
+
         val anioFundacionInt = anioFundacion.toIntOrNull() ?: 0
         val titulosGanadosInt = titulosGanados.toIntOrNull() ?: 0
 
@@ -24,10 +33,23 @@ class EquipoViewModel : ViewModel() {
             titulos_ganados = titulosGanadosInt,
             imagen_url = imagenUrl
         )
-        Firebase.firestore.collection("equipos").add(equipo)
-        nombre = ""
-        anioFundacion = ""
-        titulosGanados = ""
-        imagenUrl = ""
+
+        Firebase.firestore.collection("equipos")
+            .add(equipo)
+            .addOnSuccessListener {
+                statusMessage = "Equipo registrado correctamente"
+                // limpiar campos
+                nombre = ""
+                anioFundacion = ""
+                titulosGanados = ""
+                imagenUrl = ""
+            }
+            .addOnFailureListener { e ->
+                statusMessage = "Error al registrar: ${e.message}"
+            }
+    }
+
+    fun clearStatus() {
+        statusMessage = ""
     }
 }

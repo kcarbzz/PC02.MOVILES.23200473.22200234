@@ -60,5 +60,11 @@ dependencies {
     //Firebase
     implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-ktx")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2")
+
+    // Navigation Compose
+    implementation("androidx.navigation:navigation-compose:2.5.3")
 
 }
